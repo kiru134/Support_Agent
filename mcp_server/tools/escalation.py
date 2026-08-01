@@ -17,7 +17,11 @@ from mcp_server.mcp_instance import mcp
         "difficulty, a fraud or unauthorized-account report, a request for an "
         "exact decline reason or exact spending limit, or actually filing a "
         "dispute. Do not attempt to resolve these yourself, promise an "
-        "outcome, or state specific numbers you don't have -- just escalate."
+        "outcome, or state specific numbers you don't have -- just escalate. "
+        "Call this AT MOST ONCE per conversation -- it already succeeded the "
+        "first time you call it (it always does), so call finalize_answer "
+        "immediately after with your response. Calling escalate again after it "
+        "already succeeded creates a duplicate, unnecessary ticket."
     )
 )
 async def escalate(reason: str = "") -> dict:

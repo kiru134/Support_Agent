@@ -243,6 +243,18 @@ async def run(question: str, user_id: str) -> dict:
         base_url=settings.ollama_base_url,
         temperature=settings.ollama_temperature,
         seed=settings.ollama_seed,
+        num_ctx=settings.ollama_num_ctx,
+        # qwen3 is a hybrid-reasoning ("thinking") model -- found during iteration
+        # that asking it to explicitly self-review its draft (added for v06/v10's
+        # dropped-fact fixes) could send it into a very long internal reasoning
+        # chain on CPU, observed as an indefinite hang rather than a clean
+        # slowdown. Disabling extended thinking trades a little of that self-
+        # review benefit for bounded, predictable latency -- worth it here.
+        reasoning=False,
+        # Bounds worst-case latency on a single call -- see settings.py for why
+        # this exists (a hung request with no prior timeout blocked an entire run).
+        client_kwargs={"timeout": settings.ollama_request_timeout},
+        async_client_kwargs={"timeout": settings.ollama_request_timeout},
     )
     # finalize_answer is bound so the model CAN call it, but deliberately excluded
     # from tools_node (below) -- route_after_agent intercepts calls to it and sends

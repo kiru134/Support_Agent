@@ -54,6 +54,20 @@ class Settings(BaseSettings):
     # some local models; 0.15 was picked empirically, adjust if evidence says otherwise.
     ollama_temperature: float = 0.15
     ollama_seed: int = 42
+    # Found during iteration: a single hung Ollama request (no observable cause --
+    # servers stayed responsive to fresh requests, so not a full deadlock) blocked
+    # an entire batch run indefinitely with no prior timeout configured anywhere.
+    # This bounds worst-case per-call latency; run_cases.py's per-case try/except
+    # turns a timeout into one failed case (Output Formatting) instead of a hung
+    # process -- directly relevant to the cost/latency ADR's p95 requirement.
+    ollama_request_timeout: float = 120.0
+    # Found during iteration alongside the timeout above: Ollama was running this
+    # model with only a 4096-token context window (its default), and the system
+    # prompt + few-shots alone already use ~2000 tokens -- adding tool schemas,
+    # multi-round tool results, and retrieved policy chunks on top of that
+    # plausibly overflowed it on longer cases, triggering pathologically slow
+    # context-shifting (observed as an indefinite hang, not a clean error).
+    ollama_num_ctx: int = 8192
 
     # --- ChromaDB / retrieval ---
     chroma_persist_dir: str = ".chroma"
