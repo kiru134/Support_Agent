@@ -1,0 +1,13 @@
+# Python
+__pycache__/
+*.pyc
+.venv/
+
+# Env / secrets
+.env
+
+# Local vector store (rebuilt from policy docs on first run)
+.chroma/
+
+# OS
+.DS_Store
