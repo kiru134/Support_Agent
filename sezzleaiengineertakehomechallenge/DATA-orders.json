@@ -1,0 +1,1019 @@
+{
+ "generated_seed": 42,
+ "today": "2026-07-01",
+ "users": [
+  {
+   "user_id": "u001",
+   "name": "Jordan Larsen",
+   "account_status": "active",
+   "reschedules_used": {}
+  },
+  {
+   "user_id": "u002",
+   "name": "Jordan Marsh",
+   "account_status": "active",
+   "reschedules_used": {}
+  },
+  {
+   "user_id": "u003",
+   "name": "Morgan Reyes",
+   "account_status": "active",
+   "reschedules_used": {}
+  },
+  {
+   "user_id": "u004",
+   "name": "Riley Reyes",
+   "account_status": "active",
+   "reschedules_used": {}
+  },
+  {
+   "user_id": "u005",
+   "name": "Sam Marsh",
+   "account_status": "active",
+   "reschedules_used": {}
+  },
+  {
+   "user_id": "u006",
+   "name": "Sam Okafor",
+   "account_status": "active",
+   "reschedules_used": {}
+  },
+  {
+   "user_id": "u007",
+   "name": "Casey Silva",
+   "account_status": "active",
+   "reschedules_used": {}
+  },
+  {
+   "user_id": "u008",
+   "name": "Avery Reyes",
+   "account_status": "active",
+   "reschedules_used": {}
+  }
+ ],
+ "orders": [
+  {
+   "order_id": "ord_3001",
+   "user_id": "u001",
+   "merchant": "Luma Home",
+   "order_date": "2026-06-11",
+   "total": 147.75,
+   "plan": "pay_in_4",
+   "status": "dispute_open",
+   "reschedules_used": 2,
+   "refund": null,
+   "installments": [
+    {
+     "installment": 1,
+     "amount": 36.94,
+     "due_date": "2026-06-11",
+     "status": "paid",
+     "paid_date": "2026-06-09"
+    },
+    {
+     "installment": 2,
+     "amount": 36.94,
+     "due_date": "2026-06-25",
+     "status": "paid",
+     "paid_date": "2026-06-23"
+    },
+    {
+     "installment": 3,
+     "amount": 36.94,
+     "due_date": "2026-07-09",
+     "status": "paused",
+     "paid_date": null
+    },
+    {
+     "installment": 4,
+     "amount": 36.93,
+     "due_date": "2026-07-23",
+     "status": "paused",
+     "paid_date": null
+    }
+   ]
+  },
+  {
+   "order_id": "ord_3002",
+   "user_id": "u001",
+   "merchant": "Peak Threads",
+   "order_date": "2026-06-25",
+   "total": 225.65,
+   "plan": "pay_in_4",
+   "status": "payment_failed",
+   "reschedules_used": 2,
+   "refund": null,
+   "installments": [
+    {
+     "installment": 1,
+     "amount": 56.41,
+     "due_date": "2026-06-25",
+     "status": "paid",
+     "paid_date": "2026-06-25"
+    },
+    {
+     "installment": 2,
+     "amount": 56.41,
+     "due_date": "2026-07-09",
+     "status": "failed",
+     "paid_date": null
+    },
+    {
+     "installment": 3,
+     "amount": 56.41,
+     "due_date": "2026-07-23",
+     "status": "upcoming",
+     "paid_date": null
+    },
+    {
+     "installment": 4,
+     "amount": 56.42,
+     "due_date": "2026-08-06",
+     "status": "upcoming",
+     "paid_date": null
+    }
+   ]
+  },
+  {
+   "order_id": "ord_3003",
+   "user_id": "u001",
+   "merchant": "Circuit City Lights",
+   "order_date": "2026-05-06",
+   "total": 127.49,
+   "plan": "pay_in_4",
+   "status": "active",
+   "reschedules_used": 0,
+   "refund": {
+    "amount": 63.74,
+    "issued_date": "2026-06-30",
+    "status": "processing"
+   },
+   "installments": [
+    {
+     "installment": 1,
+     "amount": 31.87,
+     "due_date": "2026-05-06",
+     "status": "paid",
+     "paid_date": "2026-05-06"
+    },
+    {
+     "installment": 2,
+     "amount": 31.87,
+     "due_date": "2026-05-20",
+     "status": "paid",
+     "paid_date": "2026-05-18"
+    },
+    {
+     "installment": 3,
+     "amount": 31.87,
+     "due_date": "2026-06-03",
+     "status": "paid",
+     "paid_date": "2026-06-02"
+    },
+    {
+     "installment": 4,
+     "amount": 31.88,
+     "due_date": "2026-06-17",
+     "status": "paid",
+     "paid_date": "2026-06-16"
+    }
+   ]
+  },
+  {
+   "order_id": "ord_3004",
+   "user_id": "u001",
+   "merchant": "Peak Threads",
+   "order_date": "2026-05-16",
+   "total": 134.74,
+   "plan": "pay_in_4",
+   "status": "active",
+   "reschedules_used": 1,
+   "refund": {
+    "amount": 67.37,
+    "issued_date": "2026-06-29",
+    "status": "processing"
+   },
+   "installments": [
+    {
+     "installment": 1,
+     "amount": 33.69,
+     "due_date": "2026-05-16",
+     "status": "paid",
+     "paid_date": "2026-05-15"
+    },
+    {
+     "installment": 2,
+     "amount": 33.69,
+     "due_date": "2026-05-30",
+     "status": "paid",
+     "paid_date": "2026-05-29"
+    },
+    {
+     "installment": 3,
+     "amount": 33.69,
+     "due_date": "2026-06-13",
+     "status": "paid",
+     "paid_date": "2026-06-11"
+    },
+    {
+     "installment": 4,
+     "amount": 33.67,
+     "due_date": "2026-06-27",
+     "status": "paid",
+     "paid_date": "2026-06-26"
+    }
+   ]
+  },
+  {
+   "order_id": "ord_3005",
+   "user_id": "u002",
+   "merchant": "Bloom & Vine",
+   "order_date": "2026-05-13",
+   "total": 282.9,
+   "plan": "pay_in_4",
+   "status": "completed",
+   "reschedules_used": 0,
+   "refund": null,
+   "installments": [
+    {
+     "installment": 1,
+     "amount": 70.72,
+     "due_date": "2026-05-13",
+     "status": "paid",
+     "paid_date": "2026-05-11"
+    },
+    {
+     "installment": 2,
+     "amount": 70.72,
+     "due_date": "2026-05-27",
+     "status": "paid",
+     "paid_date": "2026-05-27"
+    },
+    {
+     "installment": 3,
+     "amount": 70.72,
+     "due_date": "2026-06-10",
+     "status": "paid",
+     "paid_date": "2026-06-10"
+    },
+    {
+     "installment": 4,
+     "amount": 70.74,
+     "due_date": "2026-06-24",
+     "status": "paid",
+     "paid_date": "2026-06-22"
+    }
+   ]
+  },
+  {
+   "order_id": "ord_3006",
+   "user_id": "u002",
+   "merchant": "Nordic Kicks",
+   "order_date": "2026-05-30",
+   "total": 473.5,
+   "plan": "pay_in_4",
+   "status": "active",
+   "reschedules_used": 0,
+   "refund": null,
+   "installments": [
+    {
+     "installment": 1,
+     "amount": 118.38,
+     "due_date": "2026-05-30",
+     "status": "paid",
+     "paid_date": "2026-05-29"
+    },
+    {
+     "installment": 2,
+     "amount": 118.38,
+     "due_date": "2026-06-13",
+     "status": "paid",
+     "paid_date": "2026-06-12"
+    },
+    {
+     "installment": 3,
+     "amount": 118.38,
+     "due_date": "2026-06-27",
+     "status": "paid",
+     "paid_date": "2026-06-26"
+    },
+    {
+     "installment": 4,
+     "amount": 118.36,
+     "due_date": "2026-07-11",
+     "status": "upcoming",
+     "paid_date": null
+    }
+   ]
+  },
+  {
+   "order_id": "ord_3007",
+   "user_id": "u003",
+   "merchant": "Bloom & Vine",
+   "order_date": "2026-06-19",
+   "total": 334.88,
+   "plan": "pay_in_4",
+   "status": "active",
+   "reschedules_used": 0,
+   "refund": null,
+   "installments": [
+    {
+     "installment": 1,
+     "amount": 83.72,
+     "due_date": "2026-06-19",
+     "status": "paid",
+     "paid_date": "2026-06-19"
+    },
+    {
+     "installment": 2,
+     "amount": 83.72,
+     "due_date": "2026-07-03",
+     "status": "upcoming",
+     "paid_date": null
+    },
+    {
+     "installment": 3,
+     "amount": 83.72,
+     "due_date": "2026-07-17",
+     "status": "upcoming",
+     "paid_date": null
+    },
+    {
+     "installment": 4,
+     "amount": 83.72,
+     "due_date": "2026-07-31",
+     "status": "upcoming",
+     "paid_date": null
+    }
+   ]
+  },
+  {
+   "order_id": "ord_3008",
+   "user_id": "u003",
+   "merchant": "Bloom & Vine",
+   "order_date": "2026-05-25",
+   "total": 243.39,
+   "plan": "pay_in_4",
+   "status": "active",
+   "reschedules_used": 0,
+   "refund": null,
+   "installments": [
+    {
+     "installment": 1,
+     "amount": 60.85,
+     "due_date": "2026-05-25",
+     "status": "paid",
+     "paid_date": "2026-05-23"
+    },
+    {
+     "installment": 2,
+     "amount": 60.85,
+     "due_date": "2026-06-08",
+     "status": "paid",
+     "paid_date": "2026-06-06"
+    },
+    {
+     "installment": 3,
+     "amount": 60.85,
+     "due_date": "2026-06-22",
+     "status": "paid",
+     "paid_date": "2026-06-20"
+    },
+    {
+     "installment": 4,
+     "amount": 60.84,
+     "due_date": "2026-07-06",
+     "status": "upcoming",
+     "paid_date": null
+    }
+   ]
+  },
+  {
+   "order_id": "ord_3009",
+   "user_id": "u003",
+   "merchant": "Circuit City Lights",
+   "order_date": "2026-06-21",
+   "total": 410.85,
+   "plan": "pay_in_4",
+   "status": "active",
+   "reschedules_used": 0,
+   "refund": {
+    "amount": 102.71,
+    "issued_date": "2026-06-25",
+    "status": "processing"
+   },
+   "installments": [
+    {
+     "installment": 1,
+     "amount": 102.71,
+     "due_date": "2026-06-21",
+     "status": "paid",
+     "paid_date": "2026-06-20"
+    },
+    {
+     "installment": 2,
+     "amount": 102.71,
+     "due_date": "2026-07-05",
+     "status": "upcoming",
+     "paid_date": null
+    },
+    {
+     "installment": 3,
+     "amount": 102.71,
+     "due_date": "2026-07-19",
+     "status": "upcoming",
+     "paid_date": null
+    },
+    {
+     "installment": 4,
+     "amount": 102.72,
+     "due_date": "2026-08-02",
+     "status": "upcoming",
+     "paid_date": null
+    }
+   ]
+  },
+  {
+   "order_id": "ord_3010",
+   "user_id": "u004",
+   "merchant": "TrailForge Outdoors",
+   "order_date": "2026-05-09",
+   "total": 328.39,
+   "plan": "pay_in_4",
+   "status": "completed",
+   "reschedules_used": 0,
+   "refund": null,
+   "installments": [
+    {
+     "installment": 1,
+     "amount": 82.1,
+     "due_date": "2026-05-09",
+     "status": "paid",
+     "paid_date": "2026-05-07"
+    },
+    {
+     "installment": 2,
+     "amount": 82.1,
+     "due_date": "2026-05-23",
+     "status": "paid",
+     "paid_date": "2026-05-22"
+    },
+    {
+     "installment": 3,
+     "amount": 82.1,
+     "due_date": "2026-06-06",
+     "status": "paid",
+     "paid_date": "2026-06-06"
+    },
+    {
+     "installment": 4,
+     "amount": 82.09,
+     "due_date": "2026-06-20",
+     "status": "paid",
+     "paid_date": "2026-06-19"
+    }
+   ]
+  },
+  {
+   "order_id": "ord_3011",
+   "user_id": "u004",
+   "merchant": "Nordic Kicks",
+   "order_date": "2026-05-26",
+   "total": 367.8,
+   "plan": "pay_in_4",
+   "status": "active",
+   "reschedules_used": 0,
+   "refund": null,
+   "installments": [
+    {
+     "installment": 1,
+     "amount": 91.95,
+     "due_date": "2026-05-26",
+     "status": "paid",
+     "paid_date": "2026-05-25"
+    },
+    {
+     "installment": 2,
+     "amount": 91.95,
+     "due_date": "2026-06-09",
+     "status": "paid",
+     "paid_date": "2026-06-07"
+    },
+    {
+     "installment": 3,
+     "amount": 91.95,
+     "due_date": "2026-06-23",
+     "status": "paid",
+     "paid_date": "2026-06-22"
+    },
+    {
+     "installment": 4,
+     "amount": 91.95,
+     "due_date": "2026-07-07",
+     "status": "upcoming",
+     "paid_date": null
+    }
+   ]
+  },
+  {
+   "order_id": "ord_3012",
+   "user_id": "u004",
+   "merchant": "Luma Home",
+   "order_date": "2026-06-11",
+   "total": 478.82,
+   "plan": "pay_in_4",
+   "status": "active",
+   "reschedules_used": 0,
+   "refund": null,
+   "installments": [
+    {
+     "installment": 1,
+     "amount": 119.7,
+     "due_date": "2026-06-11",
+     "status": "paid",
+     "paid_date": "2026-06-11"
+    },
+    {
+     "installment": 2,
+     "amount": 119.7,
+     "due_date": "2026-06-25",
+     "status": "paid",
+     "paid_date": "2026-06-25"
+    },
+    {
+     "installment": 3,
+     "amount": 119.7,
+     "due_date": "2026-07-09",
+     "status": "upcoming",
+     "paid_date": null
+    },
+    {
+     "installment": 4,
+     "amount": 119.72,
+     "due_date": "2026-07-23",
+     "status": "upcoming",
+     "paid_date": null
+    }
+   ]
+  },
+  {
+   "order_id": "ord_3013",
+   "user_id": "u005",
+   "merchant": "Luma Home",
+   "order_date": "2026-04-30",
+   "total": 209.3,
+   "plan": "pay_in_4",
+   "status": "completed",
+   "reschedules_used": 2,
+   "refund": null,
+   "installments": [
+    {
+     "installment": 1,
+     "amount": 52.33,
+     "due_date": "2026-04-30",
+     "status": "paid",
+     "paid_date": "2026-04-28"
+    },
+    {
+     "installment": 2,
+     "amount": 52.33,
+     "due_date": "2026-05-14",
+     "status": "paid",
+     "paid_date": "2026-05-14"
+    },
+    {
+     "installment": 3,
+     "amount": 52.33,
+     "due_date": "2026-05-28",
+     "status": "paid",
+     "paid_date": "2026-05-26"
+    },
+    {
+     "installment": 4,
+     "amount": 52.31,
+     "due_date": "2026-06-11",
+     "status": "paid",
+     "paid_date": "2026-06-09"
+    }
+   ]
+  },
+  {
+   "order_id": "ord_3014",
+   "user_id": "u005",
+   "merchant": "Circuit City Lights",
+   "order_date": "2026-05-16",
+   "total": 370.39,
+   "plan": "pay_in_4",
+   "status": "active",
+   "reschedules_used": 2,
+   "refund": {
+    "amount": 185.19,
+    "issued_date": "2026-06-28",
+    "status": "processing"
+   },
+   "installments": [
+    {
+     "installment": 1,
+     "amount": 92.6,
+     "due_date": "2026-05-16",
+     "status": "paid",
+     "paid_date": "2026-05-15"
+    },
+    {
+     "installment": 2,
+     "amount": 92.6,
+     "due_date": "2026-05-30",
+     "status": "paid",
+     "paid_date": "2026-05-30"
+    },
+    {
+     "installment": 3,
+     "amount": 92.6,
+     "due_date": "2026-06-13",
+     "status": "paid",
+     "paid_date": "2026-06-11"
+    },
+    {
+     "installment": 4,
+     "amount": 92.59,
+     "due_date": "2026-06-27",
+     "status": "paid",
+     "paid_date": "2026-06-25"
+    }
+   ]
+  },
+  {
+   "order_id": "ord_3015",
+   "user_id": "u006",
+   "merchant": "Peak Threads",
+   "order_date": "2026-04-25",
+   "total": 410.33,
+   "plan": "pay_in_4",
+   "status": "completed",
+   "reschedules_used": 2,
+   "refund": null,
+   "installments": [
+    {
+     "installment": 1,
+     "amount": 102.58,
+     "due_date": "2026-04-25",
+     "status": "paid",
+     "paid_date": "2026-04-25"
+    },
+    {
+     "installment": 2,
+     "amount": 102.58,
+     "due_date": "2026-05-09",
+     "status": "paid",
+     "paid_date": "2026-05-08"
+    },
+    {
+     "installment": 3,
+     "amount": 102.58,
+     "due_date": "2026-05-23",
+     "status": "paid",
+     "paid_date": "2026-05-23"
+    },
+    {
+     "installment": 4,
+     "amount": 102.59,
+     "due_date": "2026-06-06",
+     "status": "paid",
+     "paid_date": "2026-06-04"
+    }
+   ]
+  },
+  {
+   "order_id": "ord_3016",
+   "user_id": "u006",
+   "merchant": "Circuit City Lights",
+   "order_date": "2026-06-26",
+   "total": 182.63,
+   "plan": "pay_in_4",
+   "status": "payment_failed",
+   "reschedules_used": 0,
+   "refund": null,
+   "installments": [
+    {
+     "installment": 1,
+     "amount": 45.66,
+     "due_date": "2026-06-26",
+     "status": "paid",
+     "paid_date": "2026-06-25"
+    },
+    {
+     "installment": 2,
+     "amount": 45.66,
+     "due_date": "2026-07-10",
+     "status": "failed",
+     "paid_date": null
+    },
+    {
+     "installment": 3,
+     "amount": 45.66,
+     "due_date": "2026-07-24",
+     "status": "upcoming",
+     "paid_date": null
+    },
+    {
+     "installment": 4,
+     "amount": 45.65,
+     "due_date": "2026-08-07",
+     "status": "upcoming",
+     "paid_date": null
+    }
+   ]
+  },
+  {
+   "order_id": "ord_3017",
+   "user_id": "u006",
+   "merchant": "Luma Home",
+   "order_date": "2026-06-18",
+   "total": 65.49,
+   "plan": "pay_in_4",
+   "status": "payment_failed",
+   "reschedules_used": 2,
+   "refund": null,
+   "installments": [
+    {
+     "installment": 1,
+     "amount": 16.37,
+     "due_date": "2026-06-18",
+     "status": "paid",
+     "paid_date": "2026-06-17"
+    },
+    {
+     "installment": 2,
+     "amount": 16.37,
+     "due_date": "2026-07-02",
+     "status": "failed",
+     "paid_date": null
+    },
+    {
+     "installment": 3,
+     "amount": 16.37,
+     "due_date": "2026-07-16",
+     "status": "upcoming",
+     "paid_date": null
+    },
+    {
+     "installment": 4,
+     "amount": 16.38,
+     "due_date": "2026-07-30",
+     "status": "upcoming",
+     "paid_date": null
+    }
+   ]
+  },
+  {
+   "order_id": "ord_3018",
+   "user_id": "u006",
+   "merchant": "Circuit City Lights",
+   "order_date": "2026-06-12",
+   "total": 376.97,
+   "plan": "pay_in_4",
+   "status": "active",
+   "reschedules_used": 2,
+   "refund": null,
+   "installments": [
+    {
+     "installment": 1,
+     "amount": 94.24,
+     "due_date": "2026-06-12",
+     "status": "paid",
+     "paid_date": "2026-06-10"
+    },
+    {
+     "installment": 2,
+     "amount": 94.24,
+     "due_date": "2026-06-26",
+     "status": "paid",
+     "paid_date": "2026-06-26"
+    },
+    {
+     "installment": 3,
+     "amount": 94.24,
+     "due_date": "2026-07-10",
+     "status": "upcoming",
+     "paid_date": null
+    },
+    {
+     "installment": 4,
+     "amount": 94.25,
+     "due_date": "2026-07-24",
+     "status": "upcoming",
+     "paid_date": null
+    }
+   ]
+  },
+  {
+   "order_id": "ord_3019",
+   "user_id": "u007",
+   "merchant": "Atlas Fitness",
+   "order_date": "2026-05-08",
+   "total": 353.7,
+   "plan": "pay_in_4",
+   "status": "completed",
+   "reschedules_used": 0,
+   "refund": null,
+   "installments": [
+    {
+     "installment": 1,
+     "amount": 88.42,
+     "due_date": "2026-05-08",
+     "status": "paid",
+     "paid_date": "2026-05-06"
+    },
+    {
+     "installment": 2,
+     "amount": 88.42,
+     "due_date": "2026-05-22",
+     "status": "paid",
+     "paid_date": "2026-05-21"
+    },
+    {
+     "installment": 3,
+     "amount": 88.42,
+     "due_date": "2026-06-05",
+     "status": "paid",
+     "paid_date": "2026-06-04"
+    },
+    {
+     "installment": 4,
+     "amount": 88.44,
+     "due_date": "2026-06-19",
+     "status": "paid",
+     "paid_date": "2026-06-17"
+    }
+   ]
+  },
+  {
+   "order_id": "ord_3020",
+   "user_id": "u007",
+   "merchant": "Bloom & Vine",
+   "order_date": "2026-06-20",
+   "total": 149.08,
+   "plan": "pay_in_4",
+   "status": "active",
+   "reschedules_used": 2,
+   "refund": null,
+   "installments": [
+    {
+     "installment": 1,
+     "amount": 37.27,
+     "due_date": "2026-06-20",
+     "status": "paid",
+     "paid_date": "2026-06-18"
+    },
+    {
+     "installment": 2,
+     "amount": 37.27,
+     "due_date": "2026-07-04",
+     "status": "upcoming",
+     "paid_date": null
+    },
+    {
+     "installment": 3,
+     "amount": 37.27,
+     "due_date": "2026-07-18",
+     "status": "upcoming",
+     "paid_date": null
+    },
+    {
+     "installment": 4,
+     "amount": 37.27,
+     "due_date": "2026-08-01",
+     "status": "upcoming",
+     "paid_date": null
+    }
+   ]
+  },
+  {
+   "order_id": "ord_3021",
+   "user_id": "u007",
+   "merchant": "Bloom & Vine",
+   "order_date": "2026-06-19",
+   "total": 136.9,
+   "plan": "pay_in_4",
+   "status": "active",
+   "reschedules_used": 0,
+   "refund": null,
+   "installments": [
+    {
+     "installment": 1,
+     "amount": 34.23,
+     "due_date": "2026-06-19",
+     "status": "paid",
+     "paid_date": "2026-06-19"
+    },
+    {
+     "installment": 2,
+     "amount": 34.23,
+     "due_date": "2026-07-03",
+     "status": "upcoming",
+     "paid_date": null
+    },
+    {
+     "installment": 3,
+     "amount": 34.23,
+     "due_date": "2026-07-17",
+     "status": "upcoming",
+     "paid_date": null
+    },
+    {
+     "installment": 4,
+     "amount": 34.21,
+     "due_date": "2026-07-31",
+     "status": "upcoming",
+     "paid_date": null
+    }
+   ]
+  },
+  {
+   "order_id": "ord_3022",
+   "user_id": "u008",
+   "merchant": "Atlas Fitness",
+   "order_date": "2026-05-24",
+   "total": 266.23,
+   "plan": "pay_in_4",
+   "status": "active",
+   "reschedules_used": 0,
+   "refund": null,
+   "installments": [
+    {
+     "installment": 1,
+     "amount": 66.56,
+     "due_date": "2026-05-24",
+     "status": "paid",
+     "paid_date": "2026-05-24"
+    },
+    {
+     "installment": 2,
+     "amount": 66.56,
+     "due_date": "2026-06-07",
+     "status": "paid",
+     "paid_date": "2026-06-05"
+    },
+    {
+     "installment": 3,
+     "amount": 66.56,
+     "due_date": "2026-06-21",
+     "status": "paid",
+     "paid_date": "2026-06-21"
+    },
+    {
+     "installment": 4,
+     "amount": 66.55,
+     "due_date": "2026-07-05",
+     "status": "upcoming",
+     "paid_date": null
+    }
+   ]
+  },
+  {
+   "order_id": "ord_3023",
+   "user_id": "u008",
+   "merchant": "Atlas Fitness",
+   "order_date": "2026-05-07",
+   "total": 385.23,
+   "plan": "pay_in_4",
+   "status": "active",
+   "reschedules_used": 0,
+   "refund": {
+    "amount": 96.31,
+    "issued_date": "2026-06-20",
+    "status": "processing"
+   },
+   "installments": [
+    {
+     "installment": 1,
+     "amount": 96.31,
+     "due_date": "2026-05-07",
+     "status": "paid",
+     "paid_date": "2026-05-06"
+    },
+    {
+     "installment": 2,
+     "amount": 96.31,
+     "due_date": "2026-05-21",
+     "status": "paid",
+     "paid_date": "2026-05-20"
+    },
+    {
+     "installment": 3,
+     "amount": 96.31,
+     "due_date": "2026-06-04",
+     "status": "paid",
+     "paid_date": "2026-06-03"
+    },
+    {
+     "installment": 4,
+     "amount": 96.3,
+     "due_date": "2026-06-18",
+     "status": "paid",
+     "paid_date": "2026-06-17"
+    }
+   ]
+  }
+ ]
+}
