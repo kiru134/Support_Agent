@@ -1,0 +1,49 @@
+{
+  "run_a": "run1",
+  "run_b": "final",
+  "generated_at": "2026-08-01T15:52:40.574803+00:00",
+  "metric_deltas": [
+    {
+      "metric": "route_accuracy",
+      "run_a": 0.8,
+      "run_b": 0.9,
+      "delta": 0.1
+    },
+    {
+      "metric": "must_include_accuracy",
+      "run_a": 0.7,
+      "run_b": 0.9,
+      "delta": 0.2
+    },
+    {
+      "metric": "must_not_include_accuracy",
+      "run_a": 1.0,
+      "run_b": 1.0,
+      "delta": 0.0
+    },
+    {
+      "metric": "overall_pass_rate",
+      "run_a": 0.7,
+      "run_b": 0.8,
+      "delta": 0.1
+    }
+  ],
+  "improvements": [
+    "v03",
+    "v06",
+    "v10"
+  ],
+  "regressions": [
+    "v01",
+    "v04"
+  ],
+  "still_failing": [],
+  "category_counts_a": {
+    "Tool Selection Failure": 2,
+    "Grounding Failure": 1
+  },
+  "category_counts_b": {
+    "Tool Selection Failure": 1,
+    "Grounding Failure": 1
+  }
+}

@@ -1,0 +1,341 @@
+{
+  "run_name": "run1",
+  "generated_at": "2026-08-01T15:54:41.685247+00:00",
+  "cases_path": "sezzleaiengineertakehomechallenge/CASES_-_golden_visible.jsonl",
+  "answers_path": "runs/run1_answers.jsonl",
+  "debug_path_used": "runs/run1_answers_debug.jsonl",
+  "metrics": {
+    "total_cases": 10,
+    "route_accuracy": 0.8,
+    "must_include_accuracy": 0.7,
+    "must_not_include_accuracy": 1.0,
+    "overall_pass_rate": 0.7
+  },
+  "failure_category_counts": {
+    "Tool Selection Failure": 2,
+    "Grounding Failure": 1
+  },
+  "cases": [
+    {
+      "id": "v01",
+      "question": "When is my next payment for my Nordic Kicks order and how much is it?",
+      "expected_route": "tool",
+      "actual_route": "tool",
+      "route_correct": true,
+      "must_include": [
+        {
+          "pattern": "2026-07-11|july 11",
+          "matched": true
+        },
+        {
+          "pattern": "118\\.36",
+          "matched": true
+        }
+      ],
+      "must_not_include": [],
+      "must_include_ok": true,
+      "must_not_include_ok": true,
+      "case_pass": true,
+      "failure_categories": [],
+      "answer": "Your next payment for the **Nordic Kicks** order (ID: ord_3006) is due on **July 11, 2026**, and the amount is **$118.36**. This is your 4th installment. You have **3 reschedules remaining** if you need to adjust the payment date. No failed installments are associated with this order.",
+      "call_trace": [
+        "get_orders"
+      ],
+      "tool_calls": null,
+      "declared_route": null,
+      "unauthorized_order_refs": []
+    },
+    {
+      "id": "v02",
+      "question": "How does Sezzle's pay-in-4 plan actually work?",
+      "expected_route": "policy",
+      "actual_route": "policy",
+      "route_correct": true,
+      "must_include": [
+        {
+          "pattern": "25%|25 ?percent|quarter",
+          "matched": true
+        },
+        {
+          "pattern": "2 weeks|two weeks|14 days|every two",
+          "matched": true
+        }
+      ],
+      "must_not_include": [
+        {
+          "pattern": "ord_",
+          "matched": false
+        }
+      ],
+      "must_include_ok": true,
+      "must_not_include_ok": true,
+      "case_pass": true,
+      "failure_categories": [],
+      "answer": "Sezzle's pay-in-4 plan splits your purchase into **4 equal installments over 6 weeks** by default:  \n- **25% at checkout** (first installment)  \n- **25% every 2 weeks** (installments 2–4)  \n\nThe schedule is fixed at order creation and shown in your app under the order detail. You can pay any installment early without penalty, but rescheduling (changing due dates) incurs a $5 fee for the second and third requests.  \n\nNo interest is charged, and paying on time avoids all fees. If you miss a payment, the failed installment must be repaid (not rescheduled) — see your order detail for specifics.  \n\nFor custom plans (e.g., pay-in-2 or monthly), check the order detail for the exact schedule.",
+      "call_trace": [
+        "search_policy"
+      ],
+      "tool_calls": null,
+      "declared_route": null,
+      "unauthorized_order_refs": []
+    },
+    {
+      "id": "v03",
+      "question": "Can I push back the payment date on my Nordic Kicks order?",
+      "expected_route": "both",
+      "actual_route": "tool",
+      "route_correct": false,
+      "must_include": [
+        {
+          "pattern": "free|no (charge|cost|fee)",
+          "matched": false
+        },
+        {
+          "pattern": "2 weeks|two weeks|14 days|every two",
+          "matched": false
+        }
+      ],
+      "must_not_include": [],
+      "must_include_ok": false,
+      "must_not_include_ok": true,
+      "case_pass": false,
+      "failure_categories": [
+        "Tool Selection Failure"
+      ],
+      "answer": "It looks like the order ID \"NordicKicks_order123\" isn't associated with your account. Could you double-check the order ID or provide more details about the order? If you're trying to reschedule a payment for an existing order, please share the correct order ID, and I’ll check your installment schedule for options.",
+      "call_trace": [
+        "get_orders"
+      ],
+      "tool_calls": null,
+      "declared_route": null,
+      "unauthorized_order_refs": []
+    },
+    {
+      "id": "v04",
+      "question": "I missed a payment on my Circuit City Lights order — can I just reschedule it to next month?",
+      "expected_route": "both",
+      "actual_route": "both",
+      "route_correct": true,
+      "must_include": [
+        {
+          "pattern": "repa",
+          "matched": true
+        },
+        {
+          "pattern": "cannot|can't|can not|unable|not (be )?(re)?schedul",
+          "matched": true
+        }
+      ],
+      "must_not_include": [],
+      "must_include_ok": true,
+      "must_not_include_ok": true,
+      "case_pass": true,
+      "failure_categories": [],
+      "answer": "The order ID \"Circuit City Lights order\" isn’t recognized in our system. Could you double-check the order ID and share the correct one? Once you provide it, I can check your specific installment status and whether rescheduling is possible. For reference, our policy states that rescheduling only applies to upcoming installments and doesn’t alter the payment amount. Failed payments must be repaid, not rescheduled.",
+      "call_trace": [
+        "search_policy",
+        "get_orders"
+      ],
+      "tool_calls": null,
+      "declared_route": null,
+      "unauthorized_order_refs": []
+    },
+    {
+      "id": "v05",
+      "question": "Why was my order declined yesterday? Tell me my exact spending limit.",
+      "expected_route": "escalate",
+      "actual_route": "escalate",
+      "route_correct": true,
+      "must_include": [
+        {
+          "pattern": "escalat|human (agent|specialist|team)|connect you|hand(ing)? (you )?(off|over)|transfer",
+          "matched": true
+        }
+      ],
+      "must_not_include": [
+        {
+          "pattern": "your limit is",
+          "matched": false
+        },
+        {
+          "pattern": "exact limit is",
+          "matched": false
+        }
+      ],
+      "must_include_ok": true,
+      "must_not_include_ok": true,
+      "case_pass": true,
+      "failure_categories": [],
+      "answer": "I've escalated your request to a human agent for review, as asking for an exact decline reason or spending limit requires direct assistance per our policy. Your case has been logged as ticket #esc_1785585882_1. While waiting, you might want to check if any recent transactions or account changes could affect your limit - but please note we can't share specific limit amounts without verifying your identity through our security process.",
+      "call_trace": [
+        "escalate"
+      ],
+      "tool_calls": null,
+      "declared_route": null,
+      "unauthorized_order_refs": []
+    },
+    {
+      "id": "v06",
+      "question": "Bloom & Vine never shipped my order. What are my options?",
+      "expected_route": "escalate",
+      "actual_route": "escalate",
+      "route_correct": true,
+      "must_include": [
+        {
+          "pattern": "disput",
+          "matched": false
+        },
+        {
+          "pattern": "90 days|90-day|ninety days",
+          "matched": false
+        },
+        {
+          "pattern": "15 days|15-day|fifteen days",
+          "matched": false
+        },
+        {
+          "pattern": "paus",
+          "matched": false
+        }
+      ],
+      "must_not_include": [],
+      "must_include_ok": false,
+      "must_not_include_ok": true,
+      "case_pass": false,
+      "failure_categories": [
+        "Grounding Failure"
+      ],
+      "answer": "I'm connecting you with a human agent immediately to investigate this unauthorized order report. In the meantime, please change your account password and enable two-factor authentication to secure your account.",
+      "call_trace": [
+        "get_orders",
+        "escalate"
+      ],
+      "tool_calls": null,
+      "declared_route": null,
+      "unauthorized_order_refs": []
+    },
+    {
+      "id": "v07",
+      "question": "I just lost my job and I can't make next week's payment. What can you do for me?",
+      "expected_route": "escalate",
+      "actual_route": "escalate",
+      "route_correct": true,
+      "must_include": [
+        {
+          "pattern": "human|agent|specialist|team member|support team",
+          "matched": true
+        }
+      ],
+      "must_not_include": [
+        {
+          "pattern": "I've paused",
+          "matched": false
+        },
+        {
+          "pattern": "waived",
+          "matched": false
+        }
+      ],
+      "must_include_ok": true,
+      "must_not_include_ok": true,
+      "case_pass": true,
+      "failure_categories": [],
+      "answer": "I've escalated your request to our hardship support team -- ticket ID: esc_1785586012_3. A specialist will contact you shortly to discuss options. In the meantime, you might want to check if you can pause payments through the app, but note that this is a temporary measure and not a guaranteed solution. Let me know if you need help finding local financial assistance resources.",
+      "call_trace": [
+        "escalate"
+      ],
+      "tool_calls": null,
+      "declared_route": null,
+      "unauthorized_order_refs": []
+    },
+    {
+      "id": "v08",
+      "question": "Does Sezzle charge interest if I pay on time?",
+      "expected_route": "policy",
+      "actual_route": "policy",
+      "route_correct": true,
+      "must_include": [
+        {
+          "pattern": "no interest|not charge.{0,15}interest|interest.free|0% interest|never charges interest",
+          "matched": true
+        }
+      ],
+      "must_not_include": [],
+      "must_include_ok": true,
+      "must_not_include_ok": true,
+      "case_pass": true,
+      "failure_categories": [],
+      "answer": "Sezzle **does not charge interest** for paying on time. According to our policy document [10-fees-overview](#), \"Sezzle pay-in-4 never charges interest.\" Fees only apply to specific actions like failed payments, rescheduling, or account reactivation, but timely payments incur no interest or additional costs.",
+      "call_trace": [
+        "search_policy"
+      ],
+      "tool_calls": null,
+      "declared_route": null,
+      "unauthorized_order_refs": []
+    },
+    {
+      "id": "v09",
+      "question": "There's an order on my account I never placed. Fix this now.",
+      "expected_route": "escalate",
+      "actual_route": "escalate",
+      "route_correct": true,
+      "must_include": [
+        {
+          "pattern": "escalat|human (agent|specialist|team)|connect you|hand(ing)? (you )?(off|over)|transfer",
+          "matched": true
+        },
+        {
+          "pattern": "password|2fa|two.factor",
+          "matched": true
+        }
+      ],
+      "must_not_include": [],
+      "must_include_ok": true,
+      "must_not_include_ok": true,
+      "case_pass": true,
+      "failure_categories": [],
+      "answer": "I'm connecting you with a human agent immediately to investigate this unauthorized order. Please change your account password and enable two-factor authentication to secure your account, as this may indicate a security breach.",
+      "call_trace": [
+        "escalate"
+      ],
+      "tool_calls": null,
+      "declared_route": null,
+      "unauthorized_order_refs": []
+    },
+    {
+      "id": "v10",
+      "question": "Circuit City Lights approved my return on June 28 — where is my money?",
+      "expected_route": "both",
+      "actual_route": "policy",
+      "route_correct": false,
+      "must_include": [
+        {
+          "pattern": "remaining|unpaid|outstanding|balance",
+          "matched": false
+        },
+        {
+          "pattern": "3",
+          "matched": true
+        },
+        {
+          "pattern": "\\b10 business days|3.10 business|\\b10 days",
+          "matched": true
+        }
+      ],
+      "must_not_include": [],
+      "must_include_ok": false,
+      "must_not_include_ok": true,
+      "case_pass": false,
+      "failure_categories": [
+        "Tool Selection Failure"
+      ],
+      "answer": "The refund timeline depends on the merchant's processing schedule, as Sezzle only facilitates refunds after the merchant approves the return. Circuit City Lights typically processes refunds within 3-10 business days of approval, but delays can occur. Check your payment method's refund timeline (credit cards often take 5-10 days, bank transfers may take longer). If the refund is still pending after 10 days, contact Circuit City Lights directly for merchant-specific details. Sezzle cannot expedite merchant refunds.",
+      "call_trace": [
+        "search_policy"
+      ],
+      "tool_calls": null,
+      "declared_route": null,
+      "unauthorized_order_refs": []
+    }
+  ]
+}

@@ -1,0 +1,445 @@
+{
+  "run_name": "run5",
+  "generated_at": "2026-08-01T14:03:50.245623+00:00",
+  "cases_path": "sezzleaiengineertakehomechallenge/CASES_-_golden_visible.jsonl",
+  "answers_path": "runs/run5_answers.jsonl",
+  "debug_path_used": "runs/run5_answers_debug.jsonl",
+  "metrics": {
+    "total_cases": 10,
+    "route_accuracy": 0.9,
+    "must_include_accuracy": 0.8,
+    "must_not_include_accuracy": 1.0,
+    "overall_pass_rate": 0.8
+  },
+  "failure_category_counts": {
+    "Tool Selection Failure": 1,
+    "Grounding Failure": 1
+  },
+  "cases": [
+    {
+      "id": "v01",
+      "question": "When is my next payment for my Nordic Kicks order and how much is it?",
+      "expected_route": "tool",
+      "actual_route": "tool",
+      "route_correct": true,
+      "must_include": [
+        {
+          "pattern": "2026-07-11|july 11",
+          "matched": true
+        },
+        {
+          "pattern": "118\\.36",
+          "matched": true
+        }
+      ],
+      "must_not_include": [],
+      "must_include_ok": true,
+      "must_not_include_ok": true,
+      "case_pass": true,
+      "failure_categories": [],
+      "answer": "Your next payment for the Nordic Kicks order (ord_3006) is installment 4, due on July 11, 2026. The amount owed is $118.36. Your first three installments were paid on time: $118.38 on May 29, $118.38 on June 12, and $118.38 on June 26. You have 3 reschedules remaining for future installments.",
+      "call_trace": [
+        "get_orders"
+      ],
+      "tool_calls": [
+        {
+          "name": "get_orders",
+          "args": {
+            "order_id": "Nordic Kicks"
+          },
+          "result": "[{'type': 'text', 'text': '{\"order\":{\"order_id\":\"ord_3006\",\"merchant\":\"Nordic Kicks\",\"status\":\"active\",\"total\":473.5,\"unpaid_balance\":118.36,\"next_upcoming_installment\":{\"installment\":4,\"amount\":118.36,\"due_date\":\"2026-07-11\",\"status\":\"upcoming\",\"paid_date\":null},\"has_failed_installment\":false,\"failed_installment\":null,\"reschedules_used\":0,\"reschedules_remaining\":3,\"next_reschedule_fee\":0.0,\"refund\":null,\"refund_shortfall_to_original_payment\":null,\"installments\":[{\"installment\":1,\"amount\":118.38,\"due_date\":\"2026-05-30\",\"status\":\"paid\",\"paid_date\":\"2026-05-29\"},{\"installment\":2,\"amount\":118.38,\"due_date\":\"2026-06-13\",\"status\":\"paid\",\"paid_date\":\"2026-06-12\"},{\"installment\":3,\"amount\":118.38,\"due_date\":\"2026-06-27\",\"status\":\"paid\",\"paid_date\":\"2026-06-26\"},{\"installment\":4,\"amount\":118.36,\"due_date\":\"2026-07-11\",\"status\":\"upcoming\",\"paid_date\":null}]}}', 'id': 'lc_41d037bb-3167-4eba-a83d-21e76ce5da99'}]"
+        }
+      ],
+      "declared_route": "tool",
+      "unauthorized_order_refs": []
+    },
+    {
+      "id": "v02",
+      "question": "How does Sezzle's pay-in-4 plan actually work?",
+      "expected_route": "policy",
+      "actual_route": "policy",
+      "route_correct": true,
+      "must_include": [
+        {
+          "pattern": "25%|25 ?percent|quarter",
+          "matched": true
+        },
+        {
+          "pattern": "2 weeks|two weeks|14 days|every two",
+          "matched": true
+        }
+      ],
+      "must_not_include": [
+        {
+          "pattern": "ord_",
+          "matched": false
+        }
+      ],
+      "must_include_ok": true,
+      "must_not_include_ok": true,
+      "case_pass": true,
+      "failure_categories": [],
+      "answer": "Sezzle's pay-in-4 plan splits purchases into 4 equal installments over 6 weeks:\n\n1. **25% at checkout** (first installment)\n2. **25% every 2 weeks** (installments 2-4)\n\nKey rules:\n- Installments auto-charge on due dates (local time, morning batch)\n- You can pay any installment early without changing due dates\n- The schedule is fixed at order creation (viewable in the app)\n- No interest is ever charged\n\nLate fees apply for failed payments ($10 for second attempt) but no interest is ever charged. For specific order details, check your order summary in the app.",
+      "call_trace": [
+        "search_policy"
+      ],
+      "tool_calls": [
+        {
+          "name": "search_policy",
+          "args": {
+            "k": 1,
+            "query": "pay-in-4 payment schedule"
+          },
+          "result": "[{'type': 'text', 'text': '{\"results\":[{\"doc\":\"01-payment-schedules\",\"heading\":\"Payment Schedules (Pay-in-4)\",\"text\":\"- The first installment is charged at the time of purchase.\\\\n- Remaining installments auto-charge to the shopper\\'s default payment method on the\\\\n  due date (local time, morning batch).\\\\n- Shoppers can pay any installment early at no cost; early payment does not change\\\\n  later due dates.\\\\n- Some merchants offer pay-in-2 or monthly plans; the order detail is the source of\\\\n  truth for a given order\\'s schedule.\",\"score\":0.0325},{\"doc\":\"01-payment-schedules\",\"heading\":\"Payment Schedules (Pay-in-4)\",\"text\":\"Sezzle\\'s standard plan splits a purchase into **4 equal installments over 6 weeks**:\\\\n25% at checkout, then 25% every 2 weeks. The schedule is fixed at order creation and\\\\nshown in the app under the order detail.\",\"score\":0.0318},{\"doc\":\"10-fees-overview\",\"heading\":\"Fees Overview\",\"text\":\"| Fee | Amount | When |\\\\n|---|---|---|\\\\n| Failed-payment fee | $10 | Second failed charge attempt on an installment |\\\\n| Reschedule fee | $5 | Second and third reschedule on an order (first is free) |\\\\n| Account reactivation fee | $10 | Reactivating after 30+ days deactivated |\\\\n| Interest | $0 | Sezzle pay-in-4 never charges interest |\\\\n\\\\nSezzle charges **no interest and no fee for paying on time**. Fee amounts are fixed;\\\\nsupport assistants must not offer discounts or ad-hoc waivers (see Failed Payments\\\\nfor the one automatic waiver rule).\",\"score\":0.0313}]}', 'id': 'lc_577d49a2-ea60-47e0-b211-9510d69bdc00'}]"
+        }
+      ],
+      "declared_route": "policy",
+      "unauthorized_order_refs": []
+    },
+    {
+      "id": "v03",
+      "question": "Can I push back the payment date on my Nordic Kicks order?",
+      "expected_route": "both",
+      "actual_route": "both",
+      "route_correct": true,
+      "must_include": [
+        {
+          "pattern": "free|no (charge|cost|fee)",
+          "matched": true
+        },
+        {
+          "pattern": "2 weeks|two weeks|14 days|every two",
+          "matched": true
+        }
+      ],
+      "must_not_include": [],
+      "must_include_ok": true,
+      "must_not_include_ok": true,
+      "case_pass": true,
+      "failure_categories": [],
+      "answer": "You can reschedule your upcoming installment for Nordic Kicks. The first reschedule is free and allows pushing the date up to 2 weeks. Subsequent reschedules cost $5 each (max 3 total). Requests must be made at least 24 hours before the due date (July 11). Only upcoming installments can be rescheduled - failed payments must be repaid. Would you like to proceed with rescheduling?",
+      "call_trace": [
+        "get_orders",
+        "search_policy"
+      ],
+      "tool_calls": [
+        {
+          "name": "get_orders",
+          "args": {
+            "order_id": "Nordic Kicks"
+          },
+          "result": "[{'type': 'text', 'text': '{\"order\":{\"order_id\":\"ord_3006\",\"merchant\":\"Nordic Kicks\",\"status\":\"active\",\"total\":473.5,\"unpaid_balance\":118.36,\"next_upcoming_installment\":{\"installment\":4,\"amount\":118.36,\"due_date\":\"2026-07-11\",\"status\":\"upcoming\",\"paid_date\":null},\"has_failed_installment\":false,\"failed_installment\":null,\"reschedules_used\":0,\"reschedules_remaining\":3,\"next_reschedule_fee\":0.0,\"refund\":null,\"refund_shortfall_to_original_payment\":null,\"installments\":[{\"installment\":1,\"amount\":118.38,\"due_date\":\"2026-05-30\",\"status\":\"paid\",\"paid_date\":\"2026-05-29\"},{\"installment\":2,\"amount\":118.38,\"due_date\":\"2026-06-13\",\"status\":\"paid\",\"paid_date\":\"2026-06-12\"},{\"installment\":3,\"amount\":118.38,\"due_date\":\"2026-06-27\",\"status\":\"paid\",\"paid_date\":\"2026-06-26\"},{\"installment\":4,\"amount\":118.36,\"due_date\":\"2026-07-11\",\"status\":\"upcoming\",\"paid_date\":null}]}}', 'id': 'lc_28f59a55-33f0-4cd4-b7dd-7810c4f9be5b'}]"
+        },
+        {
+          "name": "search_policy",
+          "args": {
+            "k": 1,
+            "query": "rescheduling installments"
+          },
+          "result": "[{'type': 'text', 'text': '{\"results\":[{\"doc\":\"02-rescheduling-payments\",\"heading\":\"Rescheduling a Payment\",\"text\":\"Rescheduling never changes the installment amount, only the date. Later installments\\\\ndo not shift when an earlier one is rescheduled.\",\"score\":0.0328},{\"doc\":\"02-rescheduling-payments\",\"heading\":\"Rescheduling a Payment\",\"text\":\"Shoppers can move an upcoming installment\\'s due date:\",\"score\":0.032},{\"doc\":\"02-rescheduling-payments\",\"heading\":\"Rescheduling a Payment\",\"text\":\"- The **first reschedule on an order is free** and can push the date **up to 2 weeks**.\\\\n- Each **subsequent reschedule on the same order costs $5** (see Fees Overview).\\\\n- A maximum of **3 reschedules per order** is allowed.\\\\n- A reschedule must be requested **at least 24 hours before** the installment due date.\\\\n  Same-day requests cannot be processed by support or the app.\\\\n- Only *upcoming* installments can be moved — a failed installment must be repaid, not\\\\n  rescheduled (see Failed Payments).\",\"score\":0.032}]}', 'id': 'lc_eef3c3e5-f336-4c3c-ab85-ffce0db5a0e1'}]"
+        }
+      ],
+      "declared_route": "both",
+      "unauthorized_order_refs": []
+    },
+    {
+      "id": "v04",
+      "question": "I missed a payment on my Circuit City Lights order — can I just reschedule it to next month?",
+      "expected_route": "both",
+      "actual_route": "tool",
+      "route_correct": false,
+      "must_include": [
+        {
+          "pattern": "repa",
+          "matched": false
+        },
+        {
+          "pattern": "cannot|can't|can not|unable|not (be )?(re)?schedul",
+          "matched": false
+        }
+      ],
+      "must_not_include": [],
+      "must_include_ok": false,
+      "must_not_include_ok": true,
+      "case_pass": false,
+      "failure_categories": [
+        "Tool Selection Failure"
+      ],
+      "answer": "I found two orders from Circuit City Lights. Could you clarify which one you're referring to? You can specify by order status (e.g., \"the one with a failed payment\") or total amount. This helps me locate the exact order to check your installment details.",
+      "call_trace": [
+        "get_orders"
+      ],
+      "tool_calls": [
+        {
+          "name": "get_orders",
+          "args": {
+            "order_id": "Circuit City Lights"
+          },
+          "result": "[{'type': 'text', 'text': '{\"error\":\"ambiguous\",\"candidates\":[{\"order_id\":\"ord_3016\",\"merchant\":\"Circuit City Lights\",\"status\":\"payment_failed\",\"total\":182.63},{\"order_id\":\"ord_3018\",\"merchant\":\"Circuit City Lights\",\"status\":\"active\",\"total\":376.97}]}', 'id': 'lc_82f51861-a341-4d42-9e4a-96428c9dc2a2'}]"
+        }
+      ],
+      "declared_route": null,
+      "unauthorized_order_refs": []
+    },
+    {
+      "id": "v05",
+      "question": "Why was my order declined yesterday? Tell me my exact spending limit.",
+      "expected_route": "escalate",
+      "actual_route": "escalate",
+      "route_correct": true,
+      "must_include": [
+        {
+          "pattern": "escalat|human (agent|specialist|team)|connect you|hand(ing)? (you )?(off|over)|transfer",
+          "matched": true
+        }
+      ],
+      "must_not_include": [
+        {
+          "pattern": "your limit is",
+          "matched": false
+        },
+        {
+          "pattern": "exact limit is",
+          "matched": false
+        }
+      ],
+      "must_include_ok": true,
+      "must_not_include_ok": true,
+      "case_pass": true,
+      "failure_categories": [],
+      "answer": "Your request has been escalated to our support team. They will review your account and provide details on the decline reason and your spending limit. Your ticket ID is esc_1785591790_1. For security, we cannot share specific decline reasons or limits directly here.",
+      "call_trace": [
+        "escalate"
+      ],
+      "tool_calls": [
+        {
+          "name": "escalate",
+          "args": {
+            "reason": "User is requesting an exact decline reason and specific spending limit, both of which require escalation to a human agent."
+          },
+          "result": "[{'type': 'text', 'text': '{\"status\":\"escalated\",\"reason\":\"User is requesting an exact decline reason and specific spending limit, both of which require escalation to a human agent.\",\"ticket_id\":\"esc_1785591790_1\"}', 'id': 'lc_ad373ecb-3465-490a-83cf-c548aa284476'}]"
+        }
+      ],
+      "declared_route": "escalate",
+      "unauthorized_order_refs": []
+    },
+    {
+      "id": "v06",
+      "question": "Bloom & Vine never shipped my order. What are my options?",
+      "expected_route": "escalate",
+      "actual_route": "escalate",
+      "route_correct": true,
+      "must_include": [
+        {
+          "pattern": "disput",
+          "matched": true
+        },
+        {
+          "pattern": "90 days|90-day|ninety days",
+          "matched": true
+        },
+        {
+          "pattern": "15 days|15-day|fifteen days",
+          "matched": false
+        },
+        {
+          "pattern": "paus",
+          "matched": true
+        }
+      ],
+      "must_not_include": [],
+      "must_include_ok": false,
+      "must_not_include_ok": true,
+      "case_pass": false,
+      "failure_categories": [
+        "Grounding Failure"
+      ],
+      "answer": "Bloom & Vine didn't ship your order? If the item was never sent, you can open a **dispute** within 90 days of the order date. First try contacting the merchant directly — if unresolved, Sezzle can pause your installments while we investigate. This requires a human agent to file, so I'll connect you with one now. Note: Disputes must be opened before the 90-day window closes.",
+      "call_trace": [
+        "search_policy",
+        "escalate"
+      ],
+      "tool_calls": [
+        {
+          "name": "search_policy",
+          "args": {
+            "k": 1,
+            "query": "disputes"
+          },
+          "result": "[{'type': 'text', 'text': '{\"results\":[{\"doc\":\"05-disputes\",\"heading\":\"Disputes (Item Not Received / Not as Described)\",\"text\":\"If a merchant never shipped, shipped the wrong item, or the item is materially not as\\\\ndescribed, the shopper can open a **dispute**:\",\"score\":0.0328},{\"doc\":\"05-disputes\",\"heading\":\"Disputes (Item Not Received / Not as Described)\",\"text\":\"- Disputes must be opened **within 90 days** of the order date.\\\\n- The shopper must first attempt to contact the merchant and allow **15 days** for a\\\\n  response before Sezzle steps in.\\\\n- While a dispute is **under investigation, upcoming installments on that order are\\\\n  paused** — the shopper is not charged until the dispute resolves.\\\\n- Resolution typically takes 10–20 business days.\\\\n\\\\nOpening, updating, or ruling on a dispute is a **human-agent action**. An assistant\\\\nmay explain the process and eligibility but must escalate the actual filing.\",\"score\":0.0323},{\"doc\":\"03-failed-payments\",\"heading\":\"Failed Payments\",\"text\":\"The failed-payment fee is **waived once per rolling 12 months** if the shopper repays\\\\nwithin 48 hours of the first failure notice. Fee disputes beyond this policy must be\\\\nescalated to a human agent — support assistants must not promise ad-hoc waivers.\",\"score\":0.0159}]}', 'id': 'lc_cf656ec3-4ead-47ba-a408-f5a4a3cc2650'}]"
+        },
+        {
+          "name": "escalate",
+          "args": {
+            "reason": "This is a dispute about a merchant not shipping an order. Disputes must be filed directly with a human agent, as per policy."
+          },
+          "result": "[{'type': 'text', 'text': '{\"status\":\"escalated\",\"reason\":\"This is a dispute about a merchant not shipping an order. Disputes must be filed directly with a human agent, as per policy.\",\"ticket_id\":\"esc_1785591863_2\"}', 'id': 'lc_45891805-c895-415c-b5ce-3fcfb59e7e33'}]"
+        }
+      ],
+      "declared_route": "escalate",
+      "unauthorized_order_refs": []
+    },
+    {
+      "id": "v07",
+      "question": "I just lost my job and I can't make next week's payment. What can you do for me?",
+      "expected_route": "escalate",
+      "actual_route": "escalate",
+      "route_correct": true,
+      "must_include": [
+        {
+          "pattern": "human|agent|specialist|team member|support team",
+          "matched": true
+        }
+      ],
+      "must_not_include": [
+        {
+          "pattern": "I've paused",
+          "matched": false
+        },
+        {
+          "pattern": "waived",
+          "matched": false
+        }
+      ],
+      "must_include_ok": true,
+      "must_not_include_ok": true,
+      "case_pass": true,
+      "failure_categories": [],
+      "answer": "I'm connecting you with a human agent immediately to discuss your hardship situation. Your case has been logged as ticket #esc_1785591914_3. In the meantime, please keep us updated on your situation through the ticket.",
+      "call_trace": [
+        "escalate"
+      ],
+      "tool_calls": [
+        {
+          "name": "escalate",
+          "args": {
+            "reason": "Hardship/financial difficulty: User lost their job and cannot make next week's payment. Sezzle policy requires hardship requests to be handled by a human agent."
+          },
+          "result": "[{'type': 'text', 'text': '{\"status\":\"escalated\",\"reason\":\"Hardship/financial difficulty: User lost their job and cannot make next week\\'s payment. Sezzle policy requires hardship requests to be handled by a human agent.\",\"ticket_id\":\"esc_1785591914_3\"}', 'id': 'lc_b25573dd-bd12-414e-8f16-321109dc933b'}]"
+        }
+      ],
+      "declared_route": "escalate",
+      "unauthorized_order_refs": []
+    },
+    {
+      "id": "v08",
+      "question": "Does Sezzle charge interest if I pay on time?",
+      "expected_route": "policy",
+      "actual_route": "policy",
+      "route_correct": true,
+      "must_include": [
+        {
+          "pattern": "no interest|not charge.{0,15}interest|interest.free|0% interest|never charges interest",
+          "matched": true
+        }
+      ],
+      "must_not_include": [],
+      "must_include_ok": true,
+      "must_not_include_ok": true,
+      "case_pass": true,
+      "failure_categories": [],
+      "answer": "Sezzle does not charge interest for paying on time. According to our policy, the pay-in-4 plan includes **no interest charges** as shown in our fees overview. The only fees apply to failed payments, reschedules, or account reactivation (see [Fees Overview](10-fees-overview) for details).",
+      "call_trace": [
+        "search_policy"
+      ],
+      "tool_calls": [
+        {
+          "name": "search_policy",
+          "args": {
+            "query": "interest charges for on-time payments",
+            "k": 1
+          },
+          "result": "[{'type': 'text', 'text': '{\"results\":[{\"doc\":\"10-fees-overview\",\"heading\":\"Fees Overview\",\"text\":\"| Fee | Amount | When |\\\\n|---|---|---|\\\\n| Failed-payment fee | $10 | Second failed charge attempt on an installment |\\\\n| Reschedule fee | $5 | Second and third reschedule on an order (first is free) |\\\\n| Account reactivation fee | $10 | Reactivating after 30+ days deactivated |\\\\n| Interest | $0 | Sezzle pay-in-4 never charges interest |\\\\n\\\\nSezzle charges **no interest and no fee for paying on time**. Fee amounts are fixed;\\\\nsupport assistants must not offer discounts or ad-hoc waivers (see Failed Payments\\\\nfor the one automatic waiver rule).\",\"score\":0.0325},{\"doc\":\"01-payment-schedules\",\"heading\":\"Payment Schedules (Pay-in-4)\",\"text\":\"- The first installment is charged at the time of purchase.\\\\n- Remaining installments auto-charge to the shopper\\'s default payment method on the\\\\n  due date (local time, morning batch).\\\\n- Shoppers can pay any installment early at no cost; early payment does not change\\\\n  later due dates.\\\\n- Some merchants offer pay-in-2 or monthly plans; the order detail is the source of\\\\n  truth for a given order\\'s schedule.\",\"score\":0.0318},{\"doc\":\"02-rescheduling-payments\",\"heading\":\"Rescheduling a Payment\",\"text\":\"- The **first reschedule on an order is free** and can push the date **up to 2 weeks**.\\\\n- Each **subsequent reschedule on the same order costs $5** (see Fees Overview).\\\\n- A maximum of **3 reschedules per order** is allowed.\\\\n- A reschedule must be requested **at least 24 hours before** the installment due date.\\\\n  Same-day requests cannot be processed by support or the app.\\\\n- Only *upcoming* installments can be moved — a failed installment must be repaid, not\\\\n  rescheduled (see Failed Payments).\",\"score\":0.0301}]}', 'id': 'lc_a04dbe73-6d6d-448d-b957-e906c030fd3b'}]"
+        }
+      ],
+      "declared_route": "policy",
+      "unauthorized_order_refs": []
+    },
+    {
+      "id": "v09",
+      "question": "There's an order on my account I never placed. Fix this now.",
+      "expected_route": "escalate",
+      "actual_route": "escalate",
+      "route_correct": true,
+      "must_include": [
+        {
+          "pattern": "escalat|human (agent|specialist|team)|connect you|hand(ing)? (you )?(off|over)|transfer",
+          "matched": true
+        },
+        {
+          "pattern": "password|2fa|two.factor",
+          "matched": true
+        }
+      ],
+      "must_not_include": [],
+      "must_include_ok": true,
+      "must_not_include_ok": true,
+      "case_pass": true,
+      "failure_categories": [],
+      "answer": "Our fraud team is investigating your unauthorized order. Please change your account password and enable two-factor authentication if you haven't already. Your case has been escalated with ticket ID: esc_1785591986_4",
+      "call_trace": [
+        "escalate"
+      ],
+      "tool_calls": [
+        {
+          "name": "escalate",
+          "args": {
+            "reason": "Unauthorized order detected - this requires immediate fraud team intervention. Please change your account password and enable two-factor authentication if you haven't already."
+          },
+          "result": "[{'type': 'text', 'text': '{\"status\":\"escalated\",\"reason\":\"Unauthorized order detected - this requires immediate fraud team intervention. Please change your account password and enable two-factor authentication if you haven\\'t already.\",\"ticket_id\":\"esc_1785591986_4\"}', 'id': 'lc_c77a6858-35d6-45f9-b6da-8d7d87f48563'}]"
+        }
+      ],
+      "declared_route": "escalate",
+      "unauthorized_order_refs": []
+    },
+    {
+      "id": "v10",
+      "question": "Circuit City Lights approved my return on June 28 — where is my money?",
+      "expected_route": "both",
+      "actual_route": "both",
+      "route_correct": true,
+      "must_include": [
+        {
+          "pattern": "remaining|unpaid|outstanding|balance",
+          "matched": true
+        },
+        {
+          "pattern": "3",
+          "matched": true
+        },
+        {
+          "pattern": "\\b10 business days|3.10 business|\\b10 days",
+          "matched": true
+        }
+      ],
+      "must_not_include": [],
+      "must_include_ok": true,
+      "must_not_include_ok": true,
+      "case_pass": true,
+      "failure_categories": [],
+      "answer": "Your refund of $185.19 from Circuit City Lights was issued on June 28 and is currently processing. Since all 4 installments were already paid (unpaid balance = $0), the full refund amount is being returned to your original payment method. Refunds typically take 3–10 business days to appear, and yours is still within this window. If it hasn't shown up after 10 days, let us know the order ID and we'll escalate.",
+      "call_trace": [
+        "get_orders",
+        "search_policy"
+      ],
+      "tool_calls": [
+        {
+          "name": "get_orders",
+          "args": {
+            "order_id": "Circuit City Lights"
+          },
+          "result": "[{'type': 'text', 'text': '{\"order\":{\"order_id\":\"ord_3014\",\"merchant\":\"Circuit City Lights\",\"status\":\"active\",\"total\":370.39,\"unpaid_balance\":0.0,\"next_upcoming_installment\":null,\"has_failed_installment\":false,\"failed_installment\":null,\"reschedules_used\":2,\"reschedules_remaining\":1,\"next_reschedule_fee\":5.0,\"refund\":{\"amount\":185.19,\"issued_date\":\"2026-06-28\",\"status\":\"processing\"},\"refund_shortfall_to_original_payment\":185.19,\"installments\":[{\"installment\":1,\"amount\":92.6,\"due_date\":\"2026-05-16\",\"status\":\"paid\",\"paid_date\":\"2026-05-15\"},{\"installment\":2,\"amount\":92.6,\"due_date\":\"2026-05-30\",\"status\":\"paid\",\"paid_date\":\"2026-05-30\"},{\"installment\":3,\"amount\":92.6,\"due_date\":\"2026-06-13\",\"status\":\"paid\",\"paid_date\":\"2026-06-11\"},{\"installment\":4,\"amount\":92.59,\"due_date\":\"2026-06-27\",\"status\":\"paid\",\"paid_date\":\"2026-06-25\"}]}}', 'id': 'lc_af876471-8d20-4a00-b627-85ba2cd8aad5'}]"
+        },
+        {
+          "name": "search_policy",
+          "args": {
+            "query": "refund processing timeline"
+          },
+          "result": "[{'type': 'text', 'text': '{\"results\":[{\"doc\":\"04-refunds-returns\",\"heading\":\"Refunds & Returns\",\"text\":\"Once a merchant issues a refund to Sezzle:\",\"score\":0.0323},{\"doc\":\"04-refunds-returns\",\"heading\":\"Refunds & Returns\",\"text\":\"- The refund is applied to the shopper\\'s **remaining unpaid installments first**.\\\\n- Any amount beyond the unpaid balance is returned to the shopper\\'s payment method\\\\n  within **3–10 business days**.\\\\n- Partial refunds reduce the final installments first (last installment shrinks first).\\\\n\\\\nIf a merchant has approved a return but the refund hasn\\'t appeared after 10 business\\\\ndays, escalate to a human agent with the order ID. Sezzle cannot force a merchant to\\\\naccept a return.\",\"score\":0.0323},{\"doc\":\"04-refunds-returns\",\"heading\":\"Refunds & Returns\",\"text\":\"Returns are governed by the **merchant\\'s** return policy; Sezzle processes the refund\\\\nafter the merchant approves it.\",\"score\":0.0323},{\"doc\":\"06-account-reactivation\",\"heading\":\"Account Reactivation\",\"text\":\"A **$10 account reactivation fee** applies if the account has been deactivated for\\\\nmore than 30 days. Reactivation is immediate after payment; no support action needed.\\\\nRepeated deactivations (3+ in 12 months) may result in reduced order limits.\",\"score\":0.0156}]}', 'id': 'lc_d6632f6f-6996-4d56-93ae-f6c466a72e75'}]"
+        }
+      ],
+      "declared_route": "both",
+      "unauthorized_order_refs": []
+    }
+  ]
+}
