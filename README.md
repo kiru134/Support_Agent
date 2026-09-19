@@ -1,4 +1,4 @@
-# Sezzle Support Agent
+# Support Agent
 
 An LLM-powered support assistant for Sezzle (BNPL) shopper questions, built to a
 production-representative shape: a FastAPI service (auth + REST), a stateless
